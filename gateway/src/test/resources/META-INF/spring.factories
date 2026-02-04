@@ -1,0 +1,3 @@
+org.springframework.test.context.ContextCustomizerFactory = \
+    initiative.jhipster.mf.neo4j.gateway.config.\
+    SqlTestContainersSpringContextCustomizerFactory

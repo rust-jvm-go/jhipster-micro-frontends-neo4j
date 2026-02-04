@@ -1,0 +1,26 @@
+{
+  "generator-jhipster": {
+    "applicationIndex": 1,
+    "applicationType": "microservice",
+    "authenticationType": "oauth2",
+    "baseName": "blog",
+    "buildTool": "gradle",
+    "clientFramework": "react",
+    "databaseType": "neo4j",
+    "devServerPort": 9061,
+    "enableHibernateCache": false,
+    "entities": ["Blog", "Post", "Tag"],
+    "jhipsterVersion": "8.11.0",
+    "jwtSecretKey": "ZDBkZWQ2MzdkY2Y0NzExYzlkNTMwYzA3ZGIyZDQ4NDU3NGVlYjQ5YjE1MGNkMDQ0NzY5Nzc5MTgxMzA5MGYzNmQ5ZjhiMmE1MDIyODJjNzA3NzMwZjFmMjA2YmViYjcxZTg1Yjc0MjNjOTJiYWJiYWIwYjIxZTcxNmJmZmJjMTI=",
+    "languages": ["en"],
+    "lastLiquibaseTimestamp": 1770175459000,
+    "monorepository": true,
+    "nativeLanguage": "en",
+    "packageName": "initiative.jhipster.mf.neo4j.blog",
+    "serverPort": "8081",
+    "serviceDiscoveryType": "consul",
+    "skipCommitHook": true,
+    "skipUserManagement": true,
+    "testFrameworks": ["cypress"]
+  }
+}

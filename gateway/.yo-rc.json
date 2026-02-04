@@ -1,0 +1,46 @@
+{
+  "generator-jhipster": {
+    "applicationIndex": 0,
+    "applicationType": "gateway",
+    "applications": {
+      "blog": {
+        "applicationIndex": 1,
+        "clientFramework": "react",
+        "serverPort": "8081"
+      },
+      "store": {
+        "applicationIndex": 2,
+        "clientFramework": "react",
+        "serverPort": "8082"
+      }
+    },
+    "authenticationType": "oauth2",
+    "baseName": "gateway",
+    "buildTool": "gradle",
+    "clientFramework": "react",
+    "clientTheme": "quartz",
+    "clientThemeVariant": "dark",
+    "devServerPort": 9060,
+    "entities": [],
+    "jhipsterVersion": "8.11.0",
+    "languages": ["en"],
+    "microfrontends": [
+      {
+        "baseName": "blog"
+      },
+      {
+        "baseName": "store"
+      }
+    ],
+    "monorepository": true,
+    "nativeLanguage": "en",
+    "packageName": "initiative.jhipster.mf.neo4j.gateway",
+    "prodDatabaseType": "postgresql",
+    "reactive": true,
+    "serverPort": 8080,
+    "serviceDiscoveryType": "consul",
+    "skipCommitHook": true,
+    "skipUserManagement": true,
+    "testFrameworks": ["cypress"]
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "generator-jhipster": {
+    "appsFolders": ["gateway", "blog", "store"],
+    "baseName": "workspaces",
+    "clientPackageManager": "npm",
+    "directoryPath": "./",
+    "dockerCompose": true,
+    "entities": [],
+    "jhipsterVersion": "8.11.0",
+    "monorepository": true
+  }
+}
