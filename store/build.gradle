@@ -176,6 +176,5 @@ task cleanResources(type: Delete) {
     delete "build/resources"
 }
 
-
 compileJava.dependsOn processResources
 processResources.dependsOn bootBuildInfo
