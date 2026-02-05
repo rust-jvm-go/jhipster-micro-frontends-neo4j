@@ -14,7 +14,7 @@ jib {
         }
     }
     to {
-        image = "store:latest"
+        image = "jhi-mf-store:latest"
     }
     container {
         entrypoint = ["bash", "-c", "/entrypoint.sh"]

@@ -1,5 +1,5 @@
 # This configuration is intended for development purpose, it's **your** responsibility to harden it for production
-name: blog
+name: jhi-mf-blog
 services:
   consul:
     image: docker.io/hashicorp/consul:1.22.3

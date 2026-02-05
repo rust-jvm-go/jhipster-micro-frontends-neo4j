@@ -1,6 +1,6 @@
 services:
-  gateway:
-    image: gateway
+  jhi-mf-gateway:
+    image: jhi-mf-gateway
     volumes:
       - ./central-server-config:/config
     environment:
@@ -8,11 +8,11 @@ services:
       - SPRING_PROFILES_ACTIVE=prod,api-docs
       - SPRING_CONFIG_LOCATION=classpath:/,file:/config/
       - MANAGEMENT_PROMETHEUS_METRICS_EXPORT_ENABLED=true
-      - SPRING_CLOUD_CONSUL_HOST=consul
+      - SPRING_CLOUD_CONSUL_HOST=jhi-mf-consul
       - SPRING_CLOUD_CONSUL_PORT=8500
-      - SPRING_R2DBC_URL=r2dbc:postgresql://gateway-postgresql:5432/gateway
-      - SPRING_LIQUIBASE_URL=jdbc:postgresql://gateway-postgresql:5432/gateway
-      - SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_OIDC_ISSUER_URI=http://keycloak:9080/realms/jhipster
+      - SPRING_R2DBC_URL=r2dbc:postgresql://jhi-mf-gateway-postgresql:5432/gateway
+      - SPRING_LIQUIBASE_URL=jdbc:postgresql://jhi-mf-gateway-postgresql:5432/gateway
+      - SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_OIDC_ISSUER_URI=http://jhi-mf-keycloak:9080/realms/jhipster
       - SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_OIDC_CLIENT_ID=web_app
       - SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_OIDC_CLIENT_SECRET=web_app
     ports:
@@ -23,11 +23,11 @@ services:
       timeout: 5s
       retries: 40
     depends_on:
-      gateway-postgresql:
+      jhi-mf-gateway-postgresql:
         condition: service_healthy
-      keycloak:
+      jhi-mf-keycloak:
         condition: service_healthy
-  gateway-postgresql:
+  jhi-mf-gateway-postgresql:
     image: postgres:18.1
     environment:
       - POSTGRES_USER=gateway
@@ -38,8 +38,8 @@ services:
       timeout: 5s
       retries: 10
 
-  blog:
-    image: blog
+  jhi-mf-blog:
+    image: jhi-mf-blog
     volumes:
       - ./central-server-config:/config
     environment:
@@ -47,10 +47,10 @@ services:
       - SPRING_PROFILES_ACTIVE=prod,api-docs
       - SPRING_CONFIG_LOCATION=classpath:/,file:/config/
       - MANAGEMENT_PROMETHEUS_METRICS_EXPORT_ENABLED=true
-      - SPRING_CLOUD_CONSUL_HOST=consul
+      - SPRING_CLOUD_CONSUL_HOST=jhi-mf-consul
       - SPRING_CLOUD_CONSUL_PORT=8500
-      - SPRING_NEO4J_URI=bolt://blog-neo4j:7687
-      - SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_OIDC_ISSUER_URI=http://keycloak:9080/realms/jhipster
+      - SPRING_NEO4J_URI=bolt://jhi-mf-blog-neo4j:7687
+      - SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_OIDC_ISSUER_URI=http://jhi-mf-keycloak:9080/realms/jhipster
       - SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_OIDC_CLIENT_ID=internal
       - SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_OIDC_CLIENT_SECRET=internal
     healthcheck:
@@ -59,12 +59,12 @@ services:
       timeout: 5s
       retries: 40
     depends_on:
-      blog-neo4j:
+      jhi-mf-blog-neo4j:
         condition: service_healthy
-      keycloak:
+      jhi-mf-keycloak:
         condition: service_healthy
-  blog-neo4j:
-    image: neo4j:5.28.1
+  jhi-mf-blog-neo4j:
+    image: neo4j:2025.12.1
     environment:
       - NEO4J_AUTH=none
     healthcheck:
@@ -73,8 +73,8 @@ services:
       timeout: 5s
       retries: 10
 
-  store:
-    image: store
+  jhi-mf-store:
+    image: jhi-mf-store
     volumes:
       - ./central-server-config:/config
     environment:
@@ -82,10 +82,10 @@ services:
       - SPRING_PROFILES_ACTIVE=prod,api-docs
       - SPRING_CONFIG_LOCATION=classpath:/,file:/config/
       - MANAGEMENT_PROMETHEUS_METRICS_EXPORT_ENABLED=true
-      - SPRING_CLOUD_CONSUL_HOST=consul
+      - SPRING_CLOUD_CONSUL_HOST=jhi-mf-consul
       - SPRING_CLOUD_CONSUL_PORT=8500
-      - SPRING_DATA_MONGODB_URI=mongodb://store-mongodb:27017/store
-      - SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_OIDC_ISSUER_URI=http://keycloak:9080/realms/jhipster
+      - SPRING_DATA_MONGODB_URI=mongodb://jhi-mf-store-mongodb:27017/store
+      - SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_OIDC_ISSUER_URI=http://jhi-mf-keycloak:9080/realms/jhipster
       - SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_OIDC_CLIENT_ID=internal
       - SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_OIDC_CLIENT_SECRET=internal
     healthcheck:
@@ -94,27 +94,27 @@ services:
       timeout: 5s
       retries: 40
     depends_on:
-      store-mongodb:
+      jhi-mf-store-mongodb:
         condition: service_healthy
-      keycloak:
+      jhi-mf-keycloak:
         condition: service_healthy
-  store-mongodb:
-    image: mongo:8.0.12
+  jhi-mf-store-mongodb:
+    image: mongo:8.0.18
     healthcheck:
       test: ["CMD-SHELL", "echo 'db.runCommand(\"ping\").ok' | mongo localhost:27017/test --quiet"]
       interval: 5s
       timeout: 5s
       retries: 10
 
-  consul:
+  jhi-mf-consul:
     image: docker.io/hashicorp/consul:1.22.3
     ports:
       - 8300:8300
       - 8500:8500
       - 8600:8600
     command: consul agent -dev -ui -client 0.0.0.0 -log-level=INFO
-  keycloak:
-    image: quay.io/keycloak/keycloak:26.2.5
+  jhi-mf-keycloak:
+    image: quay.io/keycloak/keycloak:26.5.2
     command: 'start-dev --import-realm'
     volumes:
       - ./realm-config:/opt/keycloak/data/import
