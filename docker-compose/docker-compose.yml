@@ -28,7 +28,7 @@ services:
       keycloak:
         condition: service_healthy
   gateway-postgresql:
-    image: postgres:17.6
+    image: postgres:18.1
     environment:
       - POSTGRES_USER=gateway
       - POSTGRES_HOST_AUTH_METHOD=trust

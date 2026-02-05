@@ -193,7 +193,7 @@ spec:
             - name: workdir
               mountPath: /work-dir
         - name: boot
-          image: mongo:8.0.9
+          image: mongo:8.0.18
           command:
             - /work-dir/peer-finder
           args:
@@ -223,7 +223,7 @@ spec:
               mountPath: /data/db
       containers:
         - name: mongodb
-          image: mongo:8.0.9
+          image: mongo:8.0.18
           imagePullPolicy: 'IfNotPresent'
           env:
             - name: POD_NAMESPACE

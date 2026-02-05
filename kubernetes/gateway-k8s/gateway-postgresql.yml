@@ -42,7 +42,7 @@ spec:
             claimName: gateway-postgresql-pvc
       containers:
         - name: postgres
-          image: postgres:17.4
+          image: postgres:18.1
           env:
             - name: POSTGRES_USER
               value: gateway
